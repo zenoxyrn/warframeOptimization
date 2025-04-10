@@ -25,7 +25,8 @@ public class StatIO {
 		ArrayList<Mod> inputMods = new ArrayList<Mod>();
 		
 		while (read.hasNextLine()) {
-			inputMods.add(parseModLine(read.nextLine()));
+			Mod temp = parseModLine(read.nextLine(), inputMods);
+			if (temp != null) inputMods.add(temp);
 		}
 		
 		read.close();
@@ -35,7 +36,7 @@ public class StatIO {
 	/**
 	 * helper method to parse every line from the input
 	 */
-	private static Mod parseModLine(String modLine) {
+	private static Mod parseModLine(String modLine, ArrayList<Mod> inputMods) {
 		Scanner lineRead = new Scanner(modLine);
 		lineRead.useDelimiter(",");
 		String statString = lineRead.next();
@@ -60,6 +61,12 @@ public class StatIO {
 			else if (typeString.equals("Aura")) type = Mod.TYPE.Aura;
 		}
 		
+		for (int i = 0; i < inputMods.size(); i++) {
+			if (inputMods.get(i).modName.equals(modName)) {
+				inputMods.get(i).addAdditionalInfo(stat, buff);
+				return null;
+			}
+		}
 		return new Mod(modName, stat, buff, capacity, type);
 	}
 	
