@@ -2,6 +2,8 @@ package optimization.combinations;
 
 import java.util.ArrayList;
 
+import optimization.evaluation.XakuDamage;
+
 /**
  * Holds the data for each combination
  * Makes it easier to print data to output file
@@ -50,8 +52,8 @@ public class Combination implements Comparable<Combination> {
 	/**
 	 * Populates evaluatedData from an external static method
 	 */
-	public void evaluateXaku() {
-		//requires development of XakuDamage
+	public void evaluateXaku(boolean roar) {
+		evaluatedData = XakuDamage.evaluateDamageRaw(strength, range, efficiency, duration, roar);
 	}
 	
 	/**
