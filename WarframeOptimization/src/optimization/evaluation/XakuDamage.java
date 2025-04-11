@@ -12,14 +12,14 @@ public class XakuDamage {
 	 * evaluates the damage per second without considering armor or ttk
 	 */
 	public static double evaluateDamageRaw(double abilityStrength, double abilityRange, double abilityEfficiency,
-			double abilityDuration, boolean roar) {
+			double abilityDuration, int enemyLevel, boolean roar) {
 		
 		if (abilityEfficiency < WarframeOptimization.MINIMUM_EFFICIENCY || abilityDuration < WarframeOptimization.MINIMUM_DURATION) return 0;
 		
 		if (roar) {
-			return ROAR_MULTIPLIER * abilityStrength * abilityStrength * BASE_DAMAGE * Math.floor(BASE_WEAPONS * abilityRange);
+			return ROAR_MULTIPLIER * enemyLevel * abilityStrength * abilityStrength * BASE_DAMAGE * Math.floor(BASE_WEAPONS * abilityRange);
 		} else {
-			return abilityStrength * BASE_DAMAGE * Math.floor(BASE_WEAPONS * abilityRange);
+			return enemyLevel * abilityStrength * BASE_DAMAGE * Math.floor(BASE_WEAPONS * abilityRange);
 		}
 		
 	}

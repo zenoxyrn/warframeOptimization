@@ -52,8 +52,8 @@ public class Combination implements Comparable<Combination> {
 	/**
 	 * Populates evaluatedData from an external static method
 	 */
-	public void evaluateXaku(boolean roar) {
-		evaluatedData = XakuDamage.evaluateDamageRaw(strength, range, efficiency, duration, roar);
+	public void evaluateXaku(int enemyLevel, boolean roar) {
+		evaluatedData = XakuDamage.evaluateDamageRaw(strength, range, efficiency, duration, enemyLevel, roar);
 	}
 	
 	/**

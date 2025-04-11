@@ -10,6 +10,8 @@ import optimization.io.StatIO;
 
 public class WarframeOptimization {
 	
+	public static final int BASE_LEVEL_EVALUATION = 10;
+	
 	public static final boolean USE_ROAR = true;
 	
 	public static final int OCCUPIED_SLOTS = 2;
@@ -21,19 +23,20 @@ public class WarframeOptimization {
 		
 		ArrayList<Mod> mods = StatIO.readMods();
 		ArrayList<Combination> combinations = CombinationGeneration.generateCombinations(mods, OCCUPIED_SLOTS);
-		evaluateXaku(USE_ROAR, combinations);
+		evaluateXaku(USE_ROAR, BASE_LEVEL_EVALUATION, combinations);
 		sortDescending(combinations);
-		
 		StatIO.writeMods(combinations);
+		
+		Combination optimalCombination = combinations.get(0);
 		
 	}
 	
 	/**
 	 * populates all of the combinations with their Xaku evaluation
 	 */
-	private static void evaluateXaku(boolean roar, ArrayList<Combination> combinations) {
+	private static void evaluateXaku(boolean roar, int enemyLevel, ArrayList<Combination> combinations) {
 		for (int i = 0; i < combinations.size(); i++) {
-			combinations.get(i).evaluateXaku(roar);
+			combinations.get(i).evaluateXaku(enemyLevel, roar);
 		}
 	}
 	
