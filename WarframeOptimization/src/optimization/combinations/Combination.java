@@ -70,11 +70,14 @@ public class Combination implements Comparable<Combination> {
 	 */
 	@Override
 	public String toString() {
-		String string = "" + evaluatedData + ",duration: " + duration + ",efficiency: " + efficiency + ",range: " + range + ",strength: " + strength + ",";
+		String string = "" + evaluatedData + ",";
 		for (int i = 0; i < mods.size() - 1; i++) {
 			string += mods.get(i).modName + ",";
 		}
-		return string += mods.get(mods.size() - 1).modName;
+				
+		string += mods.get(mods.size() - 1).modName + ",duration: " + duration + ",efficiency: " + efficiency + ",range: " + range + ",strength: " + strength;
+		
+		return string;
 	}
 
 }
